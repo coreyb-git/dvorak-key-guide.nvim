@@ -1,20 +1,8 @@
 local M = {}
 
+local map_dvorak = require("dvorak.map_dvorak")
+
 local GuideBuffer = 0
-
-local dvorak_lowercase = {
-	Title = "DVORAK key guide",
-	TopRow = "',.pyfgcrl/=\\",
-	MiddleRow = "aoeuidhtns-",
-	BottomRow = ";qjkxbmwvz",
-}
-
-local dvorak_uppercase = {
-	Title = "DVORAK [UPPERCASE]",
-	TopRow = '"<>PYFGCRL?+|',
-	MiddleRow = "AOEUIDHTNS_",
-	BottomRow = ":QJKXBMWVZ",
-}
 
 --[[local qwerty = {
 	TopRow = "qwert yuiop[]\\",
@@ -54,14 +42,26 @@ local function updateGuide(TargetLayout)
 end
 
 GuideBuffer = vim.api.nvim_create_buf(false, true)
-updateGuide(dvorak_lowercase)
+updateGuide(map_dvorak.lowercase)
 
 vim.api.nvim_create_user_command(
-	"DvorakGuideShow",
+	"DvorakShowGuide",
 	M.ShowGuide,
 	{ nargs = 0, desc = "Dvorak key guide.", bang = false }
 )
 
+vim.api.nvim_create_user_command(
+	"DvorakMapToDvorak",
+	require("dvorak.remap").mapToDvorak,
+	{ nargs = 0, desc = "Dvorak - Map insert mode keys to Dvorak layout.", bang = false }
+)
+vim.api.nvim_create_user_command(
+	"DvorakMapToQWERTY",
+	require("dvorak.remap").mapToQwerty,
+	{ nargs = 0, desc = "Dvorak - Map insert mode keys to QWERTY layout.", bang = false }
+)
+
+--require("dvorak.remap").mapToDvorak()
 M.ShowGuide()
 
 return M
