@@ -61,7 +61,12 @@ vim.api.nvim_create_user_command(
 	{ nargs = 0, desc = "Dvorak - Map insert mode keys to QWERTY layout.", bang = false }
 )
 
---require("dvorak.remap").mapToDvorak()
+require("dvorak.remap").mapToDvorak()
 M.ShowGuide()
+
+--disable blinks autobrackets
+if package.loaded["blink.cmp"] then
+	require("blink-cmp").setup({})
+end
 
 return M
