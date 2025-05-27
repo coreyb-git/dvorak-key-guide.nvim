@@ -2,15 +2,13 @@ Features:
 
 1.  Changes layout for all modes except Normal mode so that typical navigation and edit keybinds remain in their usual position!
 2.  Can be changed back to QWERTY.
-3.  Shows the Dvorak keyboard layout guide in a window.
+3.  Shows the keyboard layout guide in a window.
 
 Commands:
 
-1.  :DvorakShowGuide
-1.  :DvorakMapToDvorak
-1.  :DvorakMapToQWERTY
-
-Loading this plugin assumes you wish to use Dvorak, thus the Dvorak layout is set and the guide shown.
+1.  :KeyboardLayoutShowGuide
+1.  :KeyboardLayoutMapToDvorak
+1.  :KeyboardLayoutMapToQWERTY
 
 Load with Lazy plugin manager:
 
@@ -19,16 +17,22 @@ return {
   "coreyb-git/dvorak.nvim",
 	dependencies = {},
 	keys = {
-		{ "<leader>D", "", desc = "[D]vorak plugin" },
-		{ "<leader>Dd", "<cmd>DvorakMapToDvorak<cr>", desc = "[d]vorak key layout" },
-		{ "<leader>Dq", "<cmd>DvorakMapToQWERTY<cr>", desc = "[q]qwerty key layout" },
-		{ "<leader>Dg", "<cmd>DvorakShowGuide<cr>", desc = "[g]uide" },
+		{ "<leader>K", "", desc = "[K]eyboard Layout" },
+		{ "<leader>Kd", "<cmd>KeyboardLayoutMapToDvorak<cr>", desc = "[d]vorak key layout" },
+		{ "<leader>Kq", "<cmd>KeyboardLayoutMapToQWERTY<cr>", desc = "[q]qwerty key layout" },
+		{ "<leader>Kg", "<cmd>KeyboardLayoutShowGuide<cr>", desc = "[g]uide" },
 	},
-	opts = {},
+	opts = {
+	  Separator = "|",
+	  OriginalLayout = require("keyboardlayout.map_qwerty").getLayout(),
+	  InitialLayout = nil,
+	  GuideOnly = false,
+	  ShowGuide = true,
+	},
 	lazy = false,
 }
 ```
 
 Known issues:
 
-- QWERTY keys for brackets, single quotes, and double quotes, still insert their closing bracket/quote but with the substituted Dvorak character.
+-  The autopairs plugin interjects and tries to close brackets and quotes, but the wrong key is inserted when this plugin is running.  autopairs is disabled to prevent this.
