@@ -25,8 +25,8 @@ return {
 	},
 	opts = {
 	  Separator = "│",
-	  OriginalLayout = require("keyboardlayout.map_qwerty").getLayout(),
-	  InitialLayout = nil,
+	  OriginalLayout = "qwerty",
+	  --InitialLayout = "dvorak",
 	  GuideOnly = false,
 	  ShowGuide = true,
 	},

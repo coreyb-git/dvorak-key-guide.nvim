@@ -14,11 +14,13 @@ function M.setup(opts)
 		Config[i] = v
 	end
 
-	require("keyboardlayout.remap").setLayout(Config.OriginalLayout)
+	local OriginalLayout = require("keyboardlayout.map_" .. Config.OriginalLayout).getLayout()
+	require("keyboardlayout.remap").setLayout(OriginalLayout)
 
 	if Config.InitialLayout ~= nil then
-		require("keyboardlayout.remap").setLayout(Config.InitialLayout)
-		require("keyboardlayout.guide").SetGuide(Config.InitialLayout)
+		local layout = require("keyboardlayout.map_" .. Config.InitialLayout).getLayout()
+		require("keyboardlayout.remap").setLayout(layout)
+		require("keyboardlayout.guide").SetGuide(layout)
 	end
 
 	if Config.ShowGuide then

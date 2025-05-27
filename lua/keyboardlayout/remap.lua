@@ -29,9 +29,10 @@ function M.setLayout(layout)
 	if Config.GuideOnly == false then
 		vim.api.nvim_create_augroup(const_augroup, { clear = true })
 
-		if layout.Title ~= Config.OriginalLayout.Title then
-			mapcase(Config.OriginalLayout.lowercase, layout.lowercase)
-			mapcase(Config.OriginalLayout.uppercase, layout.uppercase)
+		local OriginalLayout = require("keyboardlayout.map_" .. Config.OriginalLayout).getLayout()
+		if layout.Title ~= OriginalLayout.Title then
+			mapcase(OriginalLayout.lowercase, layout.lowercase)
+			mapcase(OriginalLayout.uppercase, layout.uppercase)
 
 			vim.api.nvim_create_autocmd("InsertCharPre", {
 				group = const_augroup,

@@ -1,6 +1,6 @@
 return {
 	Separator = "│",
-	OriginalLayout = require("keyboardlayout.map_qwerty").getLayout(),
+	OriginalLayout = "qwerty",
 	InitialLayout = nil,
 	GuideOnly = false,
 	ShowGuide = true,
