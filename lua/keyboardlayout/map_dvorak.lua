@@ -3,7 +3,6 @@ local M = {}
 local layout = {
 	Title = "Dvorak",
 	lowercase = {
-		Title = "DVORAK lowercase",
 		NumRow = "`1234567890[]",
 		TopRow = "',.pyfgcrl/=\\",
 		MiddleRow = "aoeuidhtns-",
@@ -11,7 +10,6 @@ local layout = {
 	},
 
 	uppercase = {
-		Title = "DVORAK UPPERCASE",
 		NumRow = "~!@#$%^&*(){}",
 		TopRow = '"<>PYFGCRL?+|',
 		MiddleRow = "AOEUIDHTNS_",
@@ -24,9 +22,13 @@ function M.getLayout()
 end
 
 local function setLayout()
-	require("dvorak.remap").setLayout(layout)
+	require("keyboardlayout.remap").setLayout(layout)
 end
 
-vim.api.nvim_create_user_command("DvorakMapToDvorak", setLayout, { nargs = 0, desc = "Dvorak layout", bang = false })
+vim.api.nvim_create_user_command(
+	"KeyboardLayoutMapToDvorak",
+	setLayout,
+	{ nargs = 0, desc = "Dvorak layout", bang = false }
+)
 
 return M

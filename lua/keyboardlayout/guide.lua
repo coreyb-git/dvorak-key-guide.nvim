@@ -1,16 +1,17 @@
 local M = {}
 
+local Separator = require("keyboardlayout.init").getConfig().Separator
+
 local GuideBuffer = vim.api.nvim_create_buf(false, true)
 
 local function formatRow(s, IndexFingerKeyNum)
-	local sep = "█"
 	local Left = string.sub(s, 1, IndexFingerKeyNum)
 	local Mid = string.sub(s, IndexFingerKeyNum + 1, IndexFingerKeyNum + 1)
 		.. string.sub(s, IndexFingerKeyNum + 2, IndexFingerKeyNum + 2)
 	local RightIndex = IndexFingerKeyNum + 3
 	local Right = string.sub(s, RightIndex, RightIndex + 3)
 	local Extra = string.sub(s, RightIndex + 4)
-	return Left .. sep .. Mid .. sep .. Right .. sep .. Extra
+	return Left .. Separator .. Mid .. Separator .. Right .. Separator .. Extra
 end
 
 function M.ShowGuide()
@@ -47,13 +48,13 @@ function M.SetGuide(TargetLayout)
 		.. " "
 		.. formatRow(TargetLayout.uppercase.BottomRow, 4)
 
-	vim.api.nvim_buf_set_lines(GuideBuffer, 0, 3, false, { NumRow, TopRow, MiddleRow, BottomRow, "" })
+	vim.api.nvim_buf_set_lines(GuideBuffer, 0, 4, false, { NumRow, TopRow, MiddleRow, BottomRow })
 end
 
 vim.api.nvim_create_user_command(
-	"DvorakShowGuide",
+	"KeyboardLayoutShowGuide",
 	M.ShowGuide,
-	{ nargs = 0, desc = "Dvorak key guide.", bang = false }
+	{ nargs = 0, desc = "Key guide.", bang = false }
 )
 
 return M
