@@ -30,12 +30,4 @@ function M.setup(opts)
 	require("keyboardlayout.guide")
 end
 
-vim.api.nvim_create_autocmd("InsertEnter", {
-	callback = function()
-		if package.loaded["nvim-autopairs"] then
-			require("nvim-autopairs").disable()
-		end
-	end,
-})
-
 return M

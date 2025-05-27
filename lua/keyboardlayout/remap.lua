@@ -44,6 +44,14 @@ function M.setLayout(layout)
 					end
 				end,
 			})
+
+			vim.api.nvim_create_autocmd("InsertEnter", {
+				callback = function()
+					if package.loaded["nvim-autopairs"] then
+						require("nvim-autopairs").disable()
+					end
+				end,
+			})
 		end
 	end
 end
