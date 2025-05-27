@@ -18,12 +18,13 @@ return {
 	dependencies = {},
 	keys = {
 		{ "<leader>K", "", desc = "[K]eyboard Layout" },
+		{ "<leader>Kg", "<cmd>KeyboardLayoutShowGuide<cr>", desc = "[g]uide" },
+		{ "<leader>Kc", "<cmd>KeyboardLayoutMapToColemak<cr>", desc = "[c]olemak key layout" },
 		{ "<leader>Kd", "<cmd>KeyboardLayoutMapToDvorak<cr>", desc = "[d]vorak key layout" },
 		{ "<leader>Kq", "<cmd>KeyboardLayoutMapToQWERTY<cr>", desc = "[q]qwerty key layout" },
-		{ "<leader>Kg", "<cmd>KeyboardLayoutShowGuide<cr>", desc = "[g]uide" },
 	},
 	opts = {
-	  Separator = "|",
+	  Separator = "│",
 	  OriginalLayout = require("keyboardlayout.map_qwerty").getLayout(),
 	  InitialLayout = nil,
 	  GuideOnly = false,

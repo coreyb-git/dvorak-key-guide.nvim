@@ -1,7 +1,8 @@
 local M = {}
 local Config = require("keyboardlayout.config")
 
-local map_dvorak = require("keyboardlayout.map_dvorak")
+require("keyboardlayout.map_colemak")
+require("keyboardlayout.map_dvorak")
 require("keyboardlayout.map_qwerty")
 
 function M.getConfig()
