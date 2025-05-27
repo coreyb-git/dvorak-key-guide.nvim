@@ -24,37 +24,29 @@ local function mapcase(from, to)
 	mapkeyrow(from.BottomRow, to.BottomRow)
 end
 
-local function mapKeys(from, to)
-	mapcase(from.lowercase, to.lowercase)
-	mapcase(from.uppercase, to.uppercase)
-end
+function M.setLayout(layout)
+	require("dvorak.guide").SetGuide(layout)
 
-function M.mapToDvorak()
 	vim.api.nvim_create_augroup(const_augroup, { clear = true })
-	mapKeys(qwerty, dvorak)
 
-	--[[local len = string.len(fromchars)
-	for i = 1, len do
-		vim.keymap.set("i", string.sub(fromchars, i, i), string.sub(tochars, i, i), { noremap = true })
-	end]]
-	--
-	vim.api.nvim_create_autocmd("InsertCharPre", {
-		group = const_augroup,
-		callback = function()
-			local i = string.find(fromchars, vim.v.char, 1, true)
-			if i ~= nil then
-				local to = string.sub(tochars, i, i)
-				vim.v.char = to
-			end
-		end,
-	})
-	vim.notify("Dvorak layout")
-end
+	if layout.Title ~= "QWERTY" then
+		local q = require("dvorak.map_qwerty").getLayout()
+		mapcase(q.lowercase, layout.lowercase)
+		mapcase(q.uppercase, layout.uppercase)
 
-function M.mapToQwerty()
-	vim.api.nvim_create_augroup(const_augroup, { clear = true })
-	--mapKeys(qwerty, qwerty)
-	vim.notify("QWERTY layout")
+		vim.print("in pre")
+		vim.api.nvim_create_autocmd("InsertCharPre", {
+			group = const_augroup,
+			callback = function()
+				local i = string.find(fromchars, vim.v.char, 1, true)
+				if i ~= nil then
+					local to = string.sub(tochars, i, i)
+					vim.v.char = to
+				end
+			end,
+		})
+		vim.notify(layout.Title .. " layout")
+	end
 end
 
 return M
