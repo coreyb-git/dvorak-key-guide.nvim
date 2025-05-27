@@ -1,12 +1,13 @@
 Features:
 
-1.  Changes layout for all modes except Normal mode so that typical navigation and edit keybinds remain in their usual position!
-2.  Can be changed back to QWERTY.
-3.  Shows the keyboard layout guide in a window.
+1.  Changes layout for INSERT mode.
+1.  Shows the keyboard layout guide in a window.
+1.  Can be set to show the guide without attempting to change the key bindings, for when the keyboard layout has already been set in the system settings, but the layout is unfamiliar.
 
 Commands:
 
 1.  :KeyboardLayoutShowGuide
+1.  :KeyboardLayoutMapToColemak
 1.  :KeyboardLayoutMapToDvorak
 1.  :KeyboardLayoutMapToQWERTY
 
@@ -36,4 +37,4 @@ return {
 
 Known issues:
 
--  The autopairs plugin interjects and tries to close brackets and quotes, but the wrong key is inserted when this plugin is running.  autopairs is disabled to prevent this.
+-  The autopairs plugin interjects and tries to close brackets and quotes, but the wrong key is inserted when this plugin is running.  Autopairs is disabled to prevent this.
