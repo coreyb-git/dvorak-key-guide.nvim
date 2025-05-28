@@ -10,7 +10,7 @@ As a way to learn a different layout without having to change the layout of the 
 
 Functioning only within INSERT mode is partially due to technical constraints, but also to keep the usual NORMAL mode key bindings and movements unaffected.  The intention is to use this plugin while writing long prose, not while writing code.  Once competent with the new layout the operating system should have the layout changed completely, but of course then the Vim movements will be be in different locations, so now you'll have a new problem.
 
-If you want to fully dive-into a new layout but changing the system keyboard layout then the guide can be used on its own to give a visual aid.
+If you want to fully dive-into a new layout by changing the system keyboard layout then the guide can be used on its own to give a visual aid.
 
 Commands:
 
