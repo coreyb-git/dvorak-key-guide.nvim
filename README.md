@@ -23,7 +23,7 @@ Load with Lazy plugin manager:
 
 ```
 return {
-  "coreyb-git/dvorak.nvim",
+  "coreyb-git/keyboardlayout.nvim",
 	dependencies = {},
 	keys = {
 		{ "<leader>K", "", desc = "[K]eyboard Layout" },
